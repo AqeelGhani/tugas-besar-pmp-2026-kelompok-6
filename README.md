@@ -164,17 +164,17 @@ Setelah kalian menulis program, kalian dapat mengcompile program dengan mengguna
 
 Pertama, kalian pilih environment yang mau kalian gunakan. 
 
-![Compile 1](image/Compile_1.png)
+![Compile 1](Image/Compile_1.png)
 
-![Compile 2](image/Compile_2.png)
+![Compile 2](Image/Compile_2.png)
 
 Lalu kalian tinggal klik compile.
 
-![Compile 3](image/Compile_3.png)
+![Compile 3](Image/Compile_3.png)
 
 Kalau kalian mau upload ke arduino kalian tinggal klik upload
 
-![Compile 4](image/Compile_4.png)
+![Compile 4](Image/Compile_4.png)
 
 Gampangkan ya!!!!
 
@@ -209,7 +209,7 @@ Lalu setelah itu kalian buka `diagram.json` dan pastikan pada mode Wokwi Diagram
 
 Lalu kalian tinggal klik play
 
-![Simulasi 1](image/Simulasi_1.png)
+![Simulasi 1](Image/Simulasi_1.png)
 
 Simple kan ya.....
 
