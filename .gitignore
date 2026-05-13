@@ -1,0 +1,18 @@
+# PlatformIO build directories and files
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Ignore compiled binaries
+*.hex
+*.elf
+*.bin
+*.a
+*.o
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore ALL VS Code settings (Keep personal editor preferences local)
+.vscode/
