@@ -96,7 +96,7 @@ Untuk `<pesan commit>`, akan ada format nya sendiri yaitu
 Contohnya, 
 
 ````bash
-git commit -m "feat : testHFile.cpp : Pembuatan fungsi sayHello"
+git commit -m "feat : testHFile.cpp : Pembuatan fungsi SayHello"
 ````
 
 untuk `<jenis commit>` dapat mengikuti tabel berikut,
@@ -155,6 +155,22 @@ Note : Jangan lupa ya gunakan `#include <Arduino.h>` untuk menggunakan standard 
 Jika kalian mau melakukan testing, kalian dapat menggunakan file `test.cpp` untuk mencoba fungsi yang telah kalian tulis.
 
 Kalian **JANGAN** mengubah file `main.cpp` untuk melakukan test perfungsi. File ini digunakan untuk melakukan test secara keseluruhan atau mengkompile program akhir.
+
+Lalu juga ada convensi dalam menulis untuk mempermudah kita membaca dan mengerti program yang kita telah tulis.
+
+| Tipe Elemen | Konvensi Penamaan | Awalan / Akhiran | Contoh |
+| :--- | :--- | :--- | :--- |
+| **Variabel (Non Struct)** | `camelCase` | Tidak ada | `itemCount`, `sensorValue` |
+| **Variabel Global** | Sesuaikan | `global_` (Awalan) | `global_totalSystemUptime`, `global_LinkedList` |
+| **Konstanta & Makro** | `SCREAMING_SNAKE_CASE` | Tidak ada | `MAX_CATALOG_ITEMS` |
+| **Fungsi Kustom** | `PascalCase` | Tidak ada | `InitSensor()`, `CalculateTotal()` |
+| **Struct** | `PascalCase` | Tidak ada | `CatalogItem`, `AccelData` |
+| **Struct Element** | `snake_case` | Tidak Ada | `CatalogItem.id_benda`, `AccelDataPtr->data_lain` |
+| **Enum** | `PascalCase` | Tidak ada | `SystemState`, `ErrorMode` |
+| **Nilai Enum** | `SCREAMING_SNAKE_CASE` | Tidak ada | `STATE_IDLE`, `STATE_ERROR` |
+| **Pointer** | Sesuaikan | `Ptr` (Akhiran) | `bufferPtr`, `LinkedListPtr` |
+
+Lalu untuk penamaan file `.cpp` dan `.h` gunakan `camelCase`.
 
 ![stop](https://i2.glitter-graphics.org/pub/2786/2786632gya6yrrqab.gif)
 
