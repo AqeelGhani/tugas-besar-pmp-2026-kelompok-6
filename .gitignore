@@ -16,6 +16,3 @@ Thumbs.db
 
 # Ignore ALL VS Code settings (Keep personal editor preferences local)
 .vscode/
-
-# Ignore Test File
-.src/test.cpp
