@@ -3,6 +3,6 @@
 
 #include <Arduino.h>
 
-void sayHello();
+void SayHello();
 
 #endif

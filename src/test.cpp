@@ -6,6 +6,6 @@ void setup() {
 }
 
 void loop() {
-    sayHello();
+    SayHello();
     delay(1000); 
 }
