@@ -161,18 +161,22 @@ void GetPIC (CatalogItem *catalogItem, char namaPIC[5]){
     ConvertBitArrayToString(convertedString, namaPIC, 4);
 }
 
+void DeleteCatalogItem (CatalogItem *catalogItem){
+    catalogItem->nama_komponen[0] = 0;
+    catalogItem->nama_komponen[1] = 0;
+    catalogItem->nama_komponen[2] = 0;
+    catalogItem->nama_komponen[3] = 0;
+    catalogItem->nama_komponen[4] = 0;
+    catalogItem->nama_komponen[5] = 0;
+    catalogItem->jumlah_stock = 0;
+    catalogItem->lokasi_dan_status = 0;
+    catalogItem->kategori_dan_pic[0] = 0;
+    catalogItem->kategori_dan_pic[1] = 0;
+    catalogItem->kategori_dan_pic[2] = 0;
+}
+
 void InitializeCatalog(CatalogItem catalog[]){
     for (unsigned short i = 0; i < 93; ++i){
-        catalog[i].nama_komponen[0] = 0;
-        catalog[i].nama_komponen[1] = 0;
-        catalog[i].nama_komponen[2] = 0;
-        catalog[i].nama_komponen[3] = 0;
-        catalog[i].nama_komponen[4] = 0;
-        catalog[i].nama_komponen[5] = 0;
-        catalog[i].jumlah_stock = 0;
-        catalog[i].lokasi_dan_status = 0;
-        catalog[i].kategori_dan_pic[0] = 0;
-        catalog[i].kategori_dan_pic[1] = 0;
-        catalog[i].kategori_dan_pic[2] = 0;
+        DeleteCatalogItem(catalog+i);
     }
 }
