@@ -5,6 +5,7 @@ unsigned short FindCharIndex (char character){
     if (character == ' ' || character == '-') return 1;
     if (character >= 65 && character <= 90) return character-63;
     if (character >= 97 && character <= 122) return character-69;
+    if (character >= 48 && character <= 57) return character+6;
 }
 
 char FindChar (short index){
@@ -85,7 +86,7 @@ unsigned short GetLokasi (CatalogItem *catalogItem){
 void UpdateLokasi (CatalogItem *catalogItem, unsigned short newIndeksLokasi){
     if (newIndeksLokasi<=63){
         uint8_t binaryLokasi = (uint8_t)newIndeksLokasi;
-        catalogItem->lokasi_dan_status = (binaryLokasi << 2) | (catalogItem->lokasi_dan_status) & 0x3; 
+        catalogItem->lokasi_dan_status = (binaryLokasi << 2) | ((catalogItem->lokasi_dan_status) & 0x3); 
     }
 }
 
@@ -97,7 +98,7 @@ unsigned short GetStatus (CatalogItem *catalogItem){
 void UpdateStatus (CatalogItem *catalogItem, unsigned short newStatus){
     if (newStatus<=3){
         uint8_t binaryStatus = (uint8_t)newStatus;
-        catalogItem->lokasi_dan_status = (binaryStatus) | (catalogItem->lokasi_dan_status) & 0xFC;
+        catalogItem->lokasi_dan_status = (binaryStatus) | ((catalogItem->lokasi_dan_status) & 0xFC);
     }
 }
 
@@ -109,11 +110,12 @@ unsigned short GetKategori (CatalogItem *catalogItem){
 void UpdateKategori (CatalogItem *catalogItem, unsigned short newKategori){
     if (newKategori<=15){
         uint8_t binaryKategori = (uint8_t)newKategori;
-        catalogItem->kategori_dan_pic[0] = (binaryKategori << 4) | (catalogItem->kategori_dan_pic[0]) & 0xF;
+        catalogItem->kategori_dan_pic[0] = (binaryKategori << 4) | ((catalogItem->kategori_dan_pic[0]) & 0xF);
     }
 }
 
 void UpperString(char string[], unsigned short len){
+    ++len;
     while(len--){
         if (string[len-1] >= 97 && string[len-1] <= 122) string[len-1] -= 32;
     }
@@ -160,8 +162,7 @@ void GetPIC (CatalogItem *catalogItem, char namaPIC[5]){
 }
 
 void InitializeCatalog(CatalogItem catalog[]){
-    unsigned short arraySize = sizeof(catalog)/sizeof(catalog[0]);
-    for (unsigned short i = 0; i < arraySize; ++i){
+    for (unsigned short i = 0; i < 93; ++i){
         catalog[i].nama_komponen[0] = 0;
         catalog[i].nama_komponen[1] = 0;
         catalog[i].nama_komponen[2] = 0;
