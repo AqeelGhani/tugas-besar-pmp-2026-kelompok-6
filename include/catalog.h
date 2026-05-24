@@ -53,6 +53,8 @@ void UpdatePIC (CatalogItem *catalogItem, char namaPIC[5]);
 
 void GetPIC (CatalogItem *catalogItem, char namaPIC[5]);
 
+void DeleteCatalogItem (CatalogItem *catalogItem);
+
 void InitializeCatalog(CatalogItem catalog[]);
 
 #endif
