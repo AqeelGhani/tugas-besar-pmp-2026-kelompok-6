@@ -11,4 +11,4 @@ const char CHAR_LOOKUP_TABLE[64] = {
     '2', '3', '4', '5', '6', '7', '8', '9'
 };
 
-const char EEPROM_KEY = 'A';
+const uint8_t EEPROM_KEY[4] = {'A', 'G', 'I', 'L'};

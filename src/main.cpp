@@ -1,11 +1,16 @@
 #include <Arduino.h>
 #include "catalog.h"
+#include "eepromControl.h"
+#include "constant.h"
+
+CatalogItem catalog[85];
 
 void setup() {
   Serial.begin(9600);
   
-  CatalogItem catalog[93];
-  InitializeCatalog(catalog);
+  InitializeCatalog(catalog, sizeof(catalog)/sizeof(catalog[0]));
+
+  InitializeEEPROM(catalog, sizeof(catalog)/sizeof(catalog[0]));
 }
 
 void loop() {
