@@ -70,36 +70,58 @@ void GetNamaKomponen (CatalogItem *catalogItem, char namaKomponen[9]){
     ConvertBitArrayToString(unCompressBitArray, namaKomponen, 8);
 }
 
-unsigned short GetJumlahStock (CatalogItem *catalogItem){
-    return (unsigned short)catalogItem->jumlah_stock;
-}
-
-void UpdateJumlahStock (CatalogItem *catalogItem, unsigned short jumlahBaru){
-    if (jumlahBaru<=255) catalogItem->jumlah_stock = (uint8_t)jumlahBaru;
-}
-
 unsigned short GetLokasi (CatalogItem *catalogItem){
-    uint8_t binaryLokasi = (catalogItem->lokasi_dan_status >> 2);
+    uint8_t binaryLokasi = (catalogItem->lokasi_dan_jumlah_status[0] >> 2);
     return (unsigned short)(binaryLokasi);
 }
 
 void UpdateLokasi (CatalogItem *catalogItem, unsigned short newIndeksLokasi){
     if (newIndeksLokasi<=63){
         uint8_t binaryLokasi = (uint8_t)newIndeksLokasi;
-        catalogItem->lokasi_dan_status = (binaryLokasi << 2) | ((catalogItem->lokasi_dan_status) & 0x3); 
+        catalogItem->lokasi_dan_jumlah_status[0] = (binaryLokasi << 2) | ((catalogItem->lokasi_dan_jumlah_status[0]) & 0x3); 
     }
 }
 
-unsigned short GetStatus (CatalogItem *catalogItem){
-    uint8_t binaryStatus = (catalogItem->lokasi_dan_status) & 0x3;
-    return (unsigned short)(binaryStatus);
+unsigned short GetStatusTersedia (CatalogItem *catalogItem){
+    uint8_t binaryStatusTersedia = ((catalogItem->lokasi_dan_jumlah_status[0] & 0x3) << 4) | (catalogItem->lokasi_dan_jumlah_status[1] >> 4);
+    return (unsigned short)(binaryStatusTersedia);
 }
 
-void UpdateStatus (CatalogItem *catalogItem, unsigned short newStatus){
-    if (newStatus<=3){
-        uint8_t binaryStatus = (uint8_t)newStatus;
-        catalogItem->lokasi_dan_status = (binaryStatus) | ((catalogItem->lokasi_dan_status) & 0xFC);
+void UpdateStatusTersedia (CatalogItem *catalogItem, unsigned short newStatusTersedia){
+    if (newStatusTersedia<=63){
+        uint8_t binaryStatusTersedia = (uint8_t)newStatusTersedia;
+        catalogItem->lokasi_dan_jumlah_status[0] = (binaryStatusTersedia>>4) | ((catalogItem->lokasi_dan_jumlah_status[0]) & 0xFC);
+        catalogItem->lokasi_dan_jumlah_status[1] = (binaryStatusTersedia<<4) | ((catalogItem->lokasi_dan_jumlah_status[1]) & 0xF);
     }
+}
+
+unsigned short GetStatusDipinjam (CatalogItem *catalogItem){
+    uint8_t binaryStatusDipinjam = ((catalogItem->lokasi_dan_jumlah_status[1] & 0xF) << 2) | (catalogItem->lokasi_dan_jumlah_status[2] >> 6);
+    return (unsigned short)(binaryStatusDipinjam);
+}
+
+void UpdateStatusDipinjam (CatalogItem *catalogItem, unsigned short newStatusDipinjam){
+    if (newStatusDipinjam<=63){
+        uint8_t binaryStatusDipinjam = (uint8_t)newStatusDipinjam;
+        catalogItem->lokasi_dan_jumlah_status[1] = (binaryStatusDipinjam>>2) | ((catalogItem->lokasi_dan_jumlah_status[1]) & 0xF0);
+        catalogItem->lokasi_dan_jumlah_status[2] = (binaryStatusDipinjam<<6) | ((catalogItem->lokasi_dan_jumlah_status[2]) & 0x3F);
+    }
+}
+
+unsigned short GetStatusRusak (CatalogItem *catalogItem){
+    uint8_t binaryStatusRusak = (catalogItem->lokasi_dan_jumlah_status[2] & 0x3F);
+    return (unsigned short)(binaryStatusRusak);
+}
+
+void UpdateStatusRusak (CatalogItem *catalogItem, unsigned short newStatusRusak){
+    if (newStatusRusak<=63){
+        uint8_t binaryStatusRusak = (uint8_t)newStatusRusak;
+        catalogItem->lokasi_dan_jumlah_status[2] = (binaryStatusRusak) | ((catalogItem->lokasi_dan_jumlah_status[2]) & 0xC0);
+    }
+}
+
+unsigned short GetJumlahStock (CatalogItem *catalogItem){
+    return GetStatusTersedia(catalogItem) + GetStatusDipinjam(catalogItem) + GetStatusRusak(catalogItem);
 }
 
 unsigned short GetKategori (CatalogItem *catalogItem){
@@ -168,15 +190,16 @@ void DeleteCatalogItem (CatalogItem *catalogItem){
     catalogItem->nama_komponen[3] = 0;
     catalogItem->nama_komponen[4] = 0;
     catalogItem->nama_komponen[5] = 0;
-    catalogItem->jumlah_stock = 0;
-    catalogItem->lokasi_dan_status = 0;
+    catalogItem->lokasi_dan_jumlah_status[0] = 0;
+    catalogItem->lokasi_dan_jumlah_status[1] = 0;
+    catalogItem->lokasi_dan_jumlah_status[2] = 0;
     catalogItem->kategori_dan_pic[0] = 0;
     catalogItem->kategori_dan_pic[1] = 0;
     catalogItem->kategori_dan_pic[2] = 0;
 }
 
-void InitializeCatalog(CatalogItem catalog[]){
-    for (unsigned short i = 0; i < 93; ++i){
+void InitializeCatalog(CatalogItem catalog[], unsigned short arraySize){
+    for (unsigned short i = 0; i < arraySize; ++i){
         DeleteCatalogItem(catalog+i);
     }
 }

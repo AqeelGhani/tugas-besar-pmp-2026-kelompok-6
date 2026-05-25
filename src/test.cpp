@@ -4,14 +4,14 @@
 #include "catalog.h"
 #include "eepromControl.h"
 
-CatalogItem catalog[93];
+CatalogItem catalog[85];
 
 void setup() {
     Serial.begin(9600);
 
-    InitializeCatalog(catalog);
+    InitializeCatalog(catalog, sizeof(catalog)/sizeof(catalog[0]));
 
-    InitializeEEPROM(catalog);
+    InitializeEEPROM(catalog, sizeof(catalog)/sizeof(catalog[0]));
 
     Serial.print("EEPROM Size: ");
     Serial.println(EEPROM.length());
@@ -22,18 +22,22 @@ void setup() {
     
     char newNama[9], newPIC[5];
     
-    GetNamaKomponen(&catalog[0], newNama);
-    GetPIC(&catalog[0], newPIC);
+    GetNamaKomponen(&catalog[84], newNama);
+    GetPIC(&catalog[84], newPIC);
 
     Serial.print(newNama);
     Serial.print(" ");
-    Serial.print(GetJumlahStock(&catalog[0]));
+    Serial.print(GetJumlahStock(&catalog[84]));
     Serial.print(" ");
-    Serial.print(GetLokasi(&catalog[0]));
+    Serial.print(GetLokasi(&catalog[84]));
     Serial.print(" ");
-    Serial.print(GetStatus(&catalog[0]));
+    Serial.print(GetStatusTersedia(&catalog[84]));
     Serial.print(" ");
-    Serial.print(GetKategori(&catalog[0]));
+    Serial.print(GetStatusDipinjam(&catalog[84]));
+    Serial.print(" ");
+    Serial.print(GetStatusRusak(&catalog[84]));
+    Serial.print(" ");
+    Serial.print(GetKategori(&catalog[84]));
     Serial.print(" ");
     Serial.println(newPIC);
 }
@@ -42,13 +46,14 @@ void loop() {
     SayHello();
     char nama[9] = "tes3", PIC[5] = "knth";
     
-    UpdateNamaKomponen(&catalog[0], nama);
-    UpdateJumlahStock(&catalog[0], 200);
-    UpdateLokasi(&catalog[0], 24);
-    UpdateStatus(&catalog[0], 0);
-    UpdateKategori(&catalog[0], 9);
-    UpdatePIC(&catalog[0], PIC);
+    UpdateNamaKomponen(&catalog[84], nama);
+    UpdateLokasi(&catalog[84], 24);
+    UpdateStatusTersedia(&catalog[84], 3);
+    UpdateStatusDipinjam(&catalog[84], 45);
+    UpdateStatusRusak(&catalog[84], 56);
+    UpdateKategori(&catalog[84], 9);
+    UpdatePIC(&catalog[84], PIC);
     
-    SaveEEPROM(catalog);
+    SaveEEPROM(catalog, sizeof(catalog)/sizeof(catalog[0]));
     delay(1000);
 }

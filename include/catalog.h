@@ -6,8 +6,7 @@
 
 typedef struct {
     uint8_t nama_komponen[6];
-    uint8_t jumlah_stock;
-    uint8_t lokasi_dan_status;
+    uint8_t lokasi_dan_jumlah_status[3];
     uint8_t kategori_dan_pic[3];
 } CatalogItem;
 
@@ -27,17 +26,23 @@ void UpdateNamaKomponen (CatalogItem *catalogItem, char namaKomponen[9]);
 
 void GetNamaKomponen (CatalogItem *catalogItem, char namaKomponen[9]);
 
-unsigned short GetJumlahStock (CatalogItem *catalogItem);
-
-void UpdateJumlahStock (CatalogItem *catalogItem, unsigned short jumlahBaru);
-
 unsigned short GetLokasi (CatalogItem *catalogItem);
 
 void UpdateLokasi (CatalogItem *catalogItem, unsigned short newIndeksLokasi);
 
-unsigned short GetStatus (CatalogItem *catalogItem);
+unsigned short GetStatusTersedia (CatalogItem *catalogItem);
 
-void UpdateStatus (CatalogItem *catalogItem, unsigned short newStatus);
+void UpdateStatusTersedia (CatalogItem *catalogItem, unsigned short newStatusTersedia);
+
+unsigned short GetStatusDipinjam (CatalogItem *catalogItem);
+
+void UpdateStatusDipinjam (CatalogItem *catalogItem, unsigned short newStatusDipinjam);
+
+unsigned short GetStatusRusak (CatalogItem *catalogItem);
+
+void UpdateStatusRusak (CatalogItem *catalogItem, unsigned short newStatusRusak);
+
+unsigned short GetJumlahStock (CatalogItem *catalogItem);
 
 unsigned short GetKategori (CatalogItem *catalogItem);
 
@@ -55,6 +60,6 @@ void GetPIC (CatalogItem *catalogItem, char namaPIC[5]);
 
 void DeleteCatalogItem (CatalogItem *catalogItem);
 
-void InitializeCatalog(CatalogItem catalog[]);
+void InitializeCatalog(CatalogItem catalog[], unsigned short arraySize);
 
 #endif
