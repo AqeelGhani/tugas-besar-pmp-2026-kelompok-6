@@ -3,4 +3,6 @@
 
 extern const char CHAR_LOOKUP_TABLE[64];
 
+extern const char EEPROM_KEY;
+
 #endif
