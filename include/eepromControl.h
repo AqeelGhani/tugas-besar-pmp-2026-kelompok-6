@@ -6,8 +6,6 @@
 #include "constant.h"
 #include "catalog.h"
 
-void FormatEEPROM();
-
 void InitializeEEPROM(CatalogItem catalog[], unsigned short arraySize);
 
 void SaveEEPROM(CatalogItem catalog[], unsigned short arraySize);
