@@ -185,21 +185,26 @@ void GetPIC (CatalogItem *catalogItem, char namaPIC[5]){
 
 void DeleteCatalogItem (CatalogItem *catalogItem){
     catalogItem->nama_komponen[0] = 0;
-    catalogItem->nama_komponen[1] = 0;
-    catalogItem->nama_komponen[2] = 0;
-    catalogItem->nama_komponen[3] = 0;
-    catalogItem->nama_komponen[4] = 0;
-    catalogItem->nama_komponen[5] = 0;
-    catalogItem->lokasi_dan_jumlah_status[0] = 0;
-    catalogItem->lokasi_dan_jumlah_status[1] = 0;
-    catalogItem->lokasi_dan_jumlah_status[2] = 0;
-    catalogItem->kategori_dan_pic[0] = 0;
-    catalogItem->kategori_dan_pic[1] = 0;
-    catalogItem->kategori_dan_pic[2] = 0;
 }
 
 void InitializeCatalog(CatalogItem catalog[], unsigned short arraySize){
     for (unsigned short i = 0; i < arraySize; ++i){
         DeleteCatalogItem(catalog+i);
     }
+}
+
+unsigned short IsSlotEmpty (CatalogItem *catalogItem){
+    if (catalogItem->nama_komponen[0] == 0) return 1;
+    else return 0;
+}
+
+unsigned short GetEmptySlotCount (CatalogItem catalog[], unsigned short arraySize) {
+    unsigned short count = 0;
+    for (unsigned short i = 0; i < arraySize; ++i) count += IsSlotEmpty(catalog+i);
+    return count;
+}
+
+unsigned short GetEmptyId (CatalogItem catalog[], unsigned short arraySize){
+    for (unsigned short i = 0; i < arraySize; ++i) if (IsSlotEmpty(catalog+i)) return i;
+    return 99;
 }
