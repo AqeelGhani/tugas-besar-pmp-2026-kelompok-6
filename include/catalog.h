@@ -62,4 +62,10 @@ void DeleteCatalogItem (CatalogItem *catalogItem);
 
 void InitializeCatalog(CatalogItem catalog[], unsigned short arraySize);
 
+unsigned short IsSlotEmpty (CatalogItem *catalogItem);
+
+unsigned short GetEmptySlotCount (CatalogItem catalog[], unsigned short arraySize);
+
+unsigned short GetEmptyId (CatalogItem catalog[], unsigned short arraySize);
+
 #endif
