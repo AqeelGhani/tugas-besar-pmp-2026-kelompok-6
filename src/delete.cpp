@@ -1,3 +1,4 @@
+// fungsi delete
 #include "delete.h"
 
 void DeleteItem(CatalogItem catalog[], unsigned short arraySize, unsigned short id)
