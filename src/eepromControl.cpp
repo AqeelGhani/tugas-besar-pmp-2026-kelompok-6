@@ -1,6 +1,6 @@
 #include "eepromControl.h"
 
-void InitializeEEPROM(CatalogItem catalog[], unsigned short arraySize){
+void ReadEEPROM(CatalogItem catalog[], unsigned short arraySize){
     uint8_t initialKeyEEPROM[4];
     EEPROM.get(0, initialKeyEEPROM);
     if (memcmp(initialKeyEEPROM, EEPROM_KEY, 4) == 0){

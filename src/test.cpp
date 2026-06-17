@@ -11,7 +11,7 @@ void setup() {
 
     InitializeCatalog(catalog, sizeof(catalog)/sizeof(catalog[0]));
 
-    InitializeEEPROM(catalog, sizeof(catalog)/sizeof(catalog[0]));
+    ReadEEPROM(catalog, sizeof(catalog)/sizeof(catalog[0]));
 
     Serial.print("EEPROM Size: ");
     Serial.println(EEPROM.length());
