@@ -3,6 +3,8 @@
 #include <EEPROM.h>
 #include "catalog.h"
 #include "eepromControl.h"
+#include "addData.h"
+#include "updateStock.h"
 
 CatalogItem catalog[85];
 
