@@ -9,7 +9,9 @@
 // 1. Catalog Array
 // 2. arraySize dari main (dengan MAX_ITEM ataupun masukkan manual ke variabel), dilakukan agar size tidak pointer dari array catalog
 // 3. ID yang ingin dicari 
-//
+// Output:
+// 1. Detail barang yang dicari berdasarkan ID
+// 
 
 void SearchByID(CatalogItem catalog[], unsigned short arraySize, unsigned short searchID);
 
