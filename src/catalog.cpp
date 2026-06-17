@@ -12,9 +12,9 @@ char FindChar (short index){
     return CHAR_LOOKUP_TABLE[index];
 }
 
-void ConvertStringToBitArray(char string[], uint8_t bitArray[], unsigned short size){
+void ConvertStringToByteArray(char string[], uint8_t byteArray[], unsigned short size){
     for (unsigned short i = 0; i<size; ++i){
-        bitArray[i] = (uint8_t)(FindCharIndex(string[i]));
+        byteArray[i] = (uint8_t)(FindCharIndex(string[i]));
     }
 }
 
@@ -47,9 +47,9 @@ void UnCompressDataNamaKomponen(uint8_t compressData[6], uint8_t initialData[8])
     }
 }
 
-void ConvertBitArrayToString (uint8_t bitArray[], char string[], unsigned short size){
+void ConvertByteArrayToString (uint8_t byteArray[], char string[], unsigned short size){
     for (unsigned short i = 0; i<size; ++i){
-        char character = FindChar((short)(bitArray[i]));
+        char character = FindChar((short)(byteArray[i]));
         if (character == '+') string[i] = '\0';
         else string[i] = character;
     }
@@ -58,16 +58,16 @@ void ConvertBitArrayToString (uint8_t bitArray[], char string[], unsigned short 
 
 void UpdateNamaKomponen (CatalogItem *catalogItem, char namaKomponen[9]){
     uint8_t convertedString[8];
-    ConvertStringToBitArray(namaKomponen, convertedString, 8);
+    ConvertStringToByteArray(namaKomponen, convertedString, 8);
 
     CompressDataNamaKomponen(convertedString, catalogItem->nama_komponen);
 }
 
 void GetNamaKomponen (CatalogItem *catalogItem, char namaKomponen[9]){
-    uint8_t unCompressBitArray[8];
-    UnCompressDataNamaKomponen(catalogItem->nama_komponen, unCompressBitArray);
+    uint8_t unCompressByteArray[8];
+    UnCompressDataNamaKomponen(catalogItem->nama_komponen, unCompressByteArray);
 
-    ConvertBitArrayToString(unCompressBitArray, namaKomponen, 8);
+    ConvertByteArrayToString(unCompressByteArray, namaKomponen, 8);
 }
 
 unsigned short GetLokasi (CatalogItem *catalogItem){
@@ -170,7 +170,7 @@ void UpdatePIC (CatalogItem *catalogItem, char namaPIC[5]){
     UpperString(namaPIC, 4);
     uint8_t convertedString[4];
     
-    ConvertStringToBitArray(namaPIC, convertedString, 4);
+    ConvertStringToByteArray(namaPIC, convertedString, 4);
     
 
     CompressDataPIC(convertedString, catalogItem->kategori_dan_pic);
@@ -180,7 +180,7 @@ void GetPIC (CatalogItem *catalogItem, char namaPIC[5]){
     uint8_t convertedString[4];
     UnCompressDataPIC(catalogItem->kategori_dan_pic, convertedString);
 
-    ConvertBitArrayToString(convertedString, namaPIC, 4);
+    ConvertByteArrayToString(convertedString, namaPIC, 4);
 }
 
 void DeleteCatalogItem (CatalogItem *catalogItem)
