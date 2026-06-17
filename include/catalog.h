@@ -16,8 +16,8 @@ unsigned short FindCharIndex (char character);
 // Fungsi mencari karakter (Tidak digunakan untuk fungsi lain selain fungsi catalog)
 char FindChar (short index);
 
-// Prosedur mengubah string menjadi bit array (Tidak digunakan untuk fungsi lain selain fungsi catalog)
-void ConvertStringToBitArray(char string[], uint8_t bitArray[], unsigned short size);
+// Prosedur mengubah string menjadi byte array (Tidak digunakan untuk fungsi lain selain fungsi catalog)
+void ConvertStringToByteArray(char string[], uint8_t byteArray[], unsigned short size);
 
 // Prosedur mengompres nama komponen (Tidak digunakan untuk fungsi lain selain fungsi catalog)
 void CompressDataNamaKomponen(uint8_t initialData[8], uint8_t compressData[6]);
@@ -25,8 +25,8 @@ void CompressDataNamaKomponen(uint8_t initialData[8], uint8_t compressData[6]);
 // Prosedur menguncompres nama komponen (Tidak digunakan untuk fungsi lain selain fungsi catalog)
 void UnCompressDataNamaKomponen(uint8_t compressData[6], uint8_t initialData[8]);
 
-// Prosedur mengubah bit array menjadi string (Tidak digunakan untuk fungsi lain selain fungsi catalog)
-void ConvertBitArrayToString (uint8_t bitArray[], char string[], unsigned short size);
+// Prosedur mengubah byte array menjadi string (Tidak digunakan untuk fungsi lain selain fungsi catalog)
+void ConvertByteArrayToString (uint8_t byteArray[], char string[], unsigned short size);
 
 // Prosedur Mengubah Nama Komponen
 // Input : 
