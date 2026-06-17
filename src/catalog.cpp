@@ -186,14 +186,6 @@ void GetPIC (CatalogItem *catalogItem, char namaPIC[5]){
 void DeleteCatalogItem (CatalogItem *catalogItem)
 {
     catalogItem->nama_komponen[0] = 0;
-
-    catalogItem->lokasi_dan_jumlah_status[0] = 0;
-    catalogItem->lokasi_dan_jumlah_status[1] = 0;
-    catalogItem->lokasi_dan_jumlah_status[2] = 0;
-
-    catalogItem->kategori_dan_pic[0] = 0;
-    catalogItem->kategori_dan_pic[1] = 0;
-    catalogItem->kategori_dan_pic[2] = 0;
 }
 
 void InitializeCatalog(CatalogItem catalog[], unsigned short arraySize){
