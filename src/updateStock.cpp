@@ -29,6 +29,11 @@ void UpdateStock(CatalogItem catalog[], unsigned short arraySize, unsigned short
         Serial.println("ERROR: Stok tidak mencukupi untuk melakukan pengurangan tersebut!");
         return;
     }
+    
+    if ((long)currentStock + stockChange > 63){
+        Serial.println("ERROR: Stock tidak dapat ditambahkan karena overflow!");
+        return;
+    }
 
     unsigned short newStock = (unsigned short)((long)currentStock + stockChange);
     
