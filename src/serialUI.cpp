@@ -70,14 +70,14 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
             AddData(catalog, arraySize);
             break;
 
-        case '2':
+        case '2': {
             Serial.println(F("\n[Menjalankan Menu 2: Hapus Data...]"));
             Serial.print(F("\nMasukkan ID Barang yang ingin dihapus: "));
             unsigned short idHapus = BacaInputAngka();
             Serial.println(idHapus);
             DeleteItem(catalog, arraySize, idHapus);
             break;
-
+        }
         case '3': {
             Serial.println(F("\n[Menjalankan Menu 3: Cari ID...]"));
             Serial.print(F("\nMasukkan ID Barang yang dicari: "));
@@ -86,22 +86,22 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
             SearchByID(catalog, arraySize, idCari);
             break;
         }
-        case '4':
+        case '4': {
             Serial.println(F("\n[Menjalankan Menu 4: Perbarui Stok...]"));
             Serial.print(F("\nMasukkan ID Barang yang ingin diupdate: "));
             unsigned short idUpdateStock = BacaInputAngka();
             Serial.println(idUpdateStock);
             UpdateStock(catalog, arraySize, idUpdateStock);
             break;
-
-        case '5':
+        }
+        case '5': {            
             Serial.println(F("\n[Menjalankan Menu 5: Perbarui Status...]"));
             Serial.print(F("\nMasukkan ID Barang yang ingin diupdate: "));
             unsigned short idUpdateStatus = BacaInputAngka();
             Serial.println(idUpdateStatus);
             UpdateStatus(catalog, arraySize, idUpdateStatus);
             break;
-
+        }
         case '6':
             Serial.println(F("\n[Menjalankan Menu 6: Menampilkan semua barang...]"));
             ShowAllItems(catalog, arraySize);
