@@ -41,19 +41,14 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     Serial.println(F("| 7  | Semikon   | 15 | Connector |"));
     Serial.println(F("-----------------------------------"));
 
-    // Variabel temporary untuk menampung inputan angka dan mengecek nilai negatif/overflow
-    int tempInput; 
-
-    // ==========================================
-    // LOOP VALIDASI KATEGORI (0 - 15)
-    // ==========================================
+    int temp; 
     while (true) {
         Serial.println(F("\nMasukkan Kategori (0-15):"));
         while(!Serial.available()){}
-        tempInput = Serial.parseInt();
+        temp = Serial.parseInt();
         
-        if (tempInput >= 0 && tempInput <= 15) {
-            kategori = tempInput;
+        if (temp >= 0 && temp <= 15) {
+            kategori = temp;
             break; 
         } else {
             Serial.println(F("ERROR: ID Kategori tidak valid! Harap masukkan angka 0 - 15."));
@@ -85,16 +80,13 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     }
     Serial.println(F(")"));
 
-    // ==========================================
-    // LOOP VALIDASI LOKASI (0 - 63)
-    // ==========================================
     while (true) {
         Serial.println(F("\nMasukkan Lokasi (0-63):"));
         while(!Serial.available()){}
-        tempInput = Serial.parseInt();
+        temp = Serial.parseInt();
         
-        if (tempInput >= 0 && tempInput <= 63) {
-            lokasi = tempInput;
+        if (temp >= 0 && temp <= 63) {
+            lokasi = temp;
             Serial.print(F(">> ")); Serial.println(lokasi);
             break;
         } else {
@@ -103,16 +95,13 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
         }
     }
 
-    // ==========================================
-    // LOOP VALIDASI STOK TERSEDIA (0 - 63)
-    // ==========================================
     while (true) {
         Serial.println(F("\nMasukkan Jumlah Stok Tersedia (0-63):"));
         while(!Serial.available()){}
-        tempInput = Serial.parseInt();
+        temp = Serial.parseInt();
         
-        if (tempInput >= 0 && tempInput <= 63) {
-            tersedia = tempInput;
+        if (temp >= 0 && temp <= 63) {
+            tersedia = temp;
             Serial.print(F(">> ")); Serial.println(tersedia);
             break;
         } else {
@@ -121,16 +110,13 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
         }
     }
 
-    // ==========================================
-    // LOOP VALIDASI STOK DIPINJAM (0 - 63)
-    // ==========================================
     while (true) {
         Serial.println(F("\nMasukkan Jumlah Stok Dipinjam (0-63):"));
         while(!Serial.available()){}
-        tempInput = Serial.parseInt();
+        temp = Serial.parseInt();
         
-        if (tempInput >= 0 && tempInput <= 63) {
-            dipinjam = tempInput;
+        if (temp >= 0 && temp <= 63) {
+            dipinjam = temp;
             Serial.print(F(">> ")); Serial.println(dipinjam);
             break;
         } else {
@@ -139,16 +125,13 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
         }
     }
 
-    // ==========================================
-    // LOOP VALIDASI STOK RUSAK (0 - 63)
-    // ==========================================
     while (true) {
         Serial.println(F("\nMasukkan Jumlah Stok Rusak (0-63):"));
         while(!Serial.available()){}
-        tempInput = Serial.parseInt();
+        temp = Serial.parseInt();
         
-        if (tempInput >= 0 && tempInput <= 63) {
-            rusak = tempInput;
+        if (temp >= 0 && temp <= 63) {
+            rusak = temp;
             Serial.print(F(">> ")); Serial.println(rusak);
             break;
         } else {
@@ -165,7 +148,6 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     pic[4] = '\0';
     Serial.print(F(">> ")); Serial.println(pic);
 
-    // Memperbarui data ke dalam struct
     UpdateNamaKomponen(&catalog[id], nama);
     UpdateKategori(&catalog[id], kategori);
     UpdateLokasi(&catalog[id], lokasi);
