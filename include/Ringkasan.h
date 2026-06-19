@@ -11,6 +11,6 @@
 // Output:
 // 1. Detail ringkasan dari jumlah slot dan total status barang
 
-void TampilkanRingkasanInventaris(CatalogItem catalog[], unsigned short arraySize);
+void showRingkasan(CatalogItem catalog[], unsigned short arraySize);
 
 #endif

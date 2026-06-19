@@ -3,7 +3,7 @@
 #include "catalog.h"
 #include "Ringkasan.h"
 
-void TampilkanRingkasanInventaris(CatalogItem catalog[], unsigned short arraySize) {
+void showRingkasan(CatalogItem catalog[], unsigned short arraySize) {
     // Variabel untuk total akhir
     unsigned short totalSlotTerpakai = 0;
     unsigned short totalBarangTersedia = 0;
