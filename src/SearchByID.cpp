@@ -9,14 +9,14 @@ void SearchByID(CatalogItem catalog[], unsigned short arraySize, unsigned short 
 
     // Validasi ID yang dicari ada di rentang index array
     if(searchID >= arraySize){
-        sprintf(buffer, "ERROR!! ID %d melebihi batas memori.\n", searchID);
+        sprintf(buffer, "ERROR!! ID %d melebihi batas memori.\r\n", searchID);
         Serial.print(buffer);
         return; 
     }   
 
     // Validasi apakah ID yang dicari kosong
     if (IsSlotEmpty(&catalog[searchID])) {
-        sprintf(buffer, "ERROR!! Data dengan ID %d tidak ditemukan.\n", searchID);
+        sprintf(buffer, "ERROR!! Data dengan ID %d tidak ditemukan.\r\n", searchID);
         Serial.print(buffer);
         return; 
     }
