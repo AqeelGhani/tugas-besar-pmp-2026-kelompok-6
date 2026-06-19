@@ -15,7 +15,7 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     Serial.println(F("Masukkan ID Barang (0 - 84):"));
     while(!Serial.available()){}
     unsigned short id = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(id); // Menampilkan inputan ID
+    Serial.print(F(">> ")); Serial.println(id);
     
     while(Serial.available()) Serial.read();
 
@@ -37,41 +37,68 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     while(!Serial.available()){}
     Serial.readBytesUntil('\n', nama, 8);
     nama[8] = '\0'; 
-    Serial.print(F(">> ")); Serial.println(nama); // Menampilkan inputan Nama
+    Serial.print(F(">> ")); Serial.println(nama);
 
     Serial.println(F("\nMasukkan Kategori (0-15):"));
     while(!Serial.available()){}
     kategori = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(kategori); // Menampilkan inputan Kategori
+    
+    // Echo inputan kategori beserta namanya secara manual
+    Serial.print(F(">> ")); 
+    Serial.print(kategori);
+    Serial.print(F(" (")); 
+    switch (kategori) {
+        case 0:  Serial.print(F("Mikon")); break;
+        case 1:  Serial.print(F("SBC")); break;
+        case 2:  Serial.print(F("Sensor")); break;
+        case 3:  Serial.print(F("Aktuator")); break;
+        case 4:  Serial.print(F("Comm")); break;
+        case 5:  Serial.print(F("Display")); break;
+        case 6:  Serial.print(F("Pasif")); break;
+        case 7:  Serial.print(F("Semikon")); break;
+        case 8:  Serial.print(F("IC")); break;
+        case 9:  Serial.print(F("Driver")); break;
+        case 10: Serial.print(F("Power")); break;
+        case 11: Serial.print(F("AlatUkur")); break;
+        case 12: Serial.print(F("Instrumen")); break;
+        case 13: Serial.print(F("Alat")); break;
+        case 14: Serial.print(F("Media")); break;
+        case 15: Serial.print(F("Connector")); break;
+        default: Serial.print(F("Unknown")); break;
+    }
+    Serial.println(F(")"));
+
+    if (kategori > 15) {
+        Serial.println(F("WARNING: Indeks kategori di luar jangkauan (0-15)!"));
+    }
 
     Serial.println(F("\nMasukkan Lokasi (0-63):"));
     while(!Serial.available()){}
     lokasi = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(lokasi); // Menampilkan inputan Lokasi
+    Serial.print(F(">> ")); Serial.println(lokasi);
 
     Serial.println(F("\nMasukkan Jumlah Stok Tersedia:"));
     while(!Serial.available()){}
     tersedia = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(tersedia); // Menampilkan inputan Stok Tersedia
+    Serial.print(F(">> ")); Serial.println(tersedia);
 
     Serial.println(F("\nMasukkan Jumlah Stok Dipinjam:"));
     while(!Serial.available()){}
     dipinjam = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(dipinjam); // Menampilkan inputan Stok Dipinjam
+    Serial.print(F(">> ")); Serial.println(dipinjam);
 
     Serial.println(F("\nMasukkan Jumlah Stok Rusak:"));
     while(!Serial.available()){}
     rusak = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(rusak); // Menampilkan inputan Stok Rusak
+    Serial.print(F(">> ")); Serial.println(rusak);
 
-    // Membersihkan sisa buffer sebelum membaca string lagi
     while(Serial.available()) Serial.read(); 
 
     Serial.println(F("\nMasukkan Nama PIC (Maks 4 huruf):"));
     while(!Serial.available()){}
     Serial.readBytesUntil('\n', pic, 4);
     pic[4] = '\0';
-    Serial.print(F(">> ")); Serial.println(pic); // Menampilkan inputan PIC
+    Serial.print(F(">> ")); Serial.println(pic);
 
     // Memperbarui data ke dalam struct
     UpdateNamaKomponen(&catalog[id], nama);
@@ -84,11 +111,35 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
 
     Serial.println(F("\nSUCCESS: Data barang berhasil ditambahkan!"));
 
-    // Ringkasan akhir (opsional, bisa Anda hapus kalau merasa sudah cukup dengan echo di atas)
+    // Ringkasan Akhir
     Serial.println(F("\n=== RINGKASAN DATA YANG DITAMBAHKAN ==="));
     Serial.print(F("ID Barang   : ")); Serial.println(id);
     Serial.print(F("Nama Barang : ")); Serial.println(nama);
-    Serial.print(F("Kategori    : ")); Serial.println(kategori);
+    
+    // Cetak kategori di ringkasan secara manual
+    Serial.print(F("Kategori    : ")); 
+    Serial.print(kategori);
+    Serial.print(F(" - ")); 
+    switch (kategori) {
+        case 0:  Serial.println(F("Mikon")); break;
+        case 1:  Serial.println(F("SBC")); break;
+        case 2:  Serial.println(F("Sensor")); break;
+        case 3:  Serial.println(F("Aktuator")); break;
+        case 4:  Serial.println(F("Comm")); break;
+        case 5:  Serial.println(F("Display")); break;
+        case 6:  Serial.println(F("Pasif")); break;
+        case 7:  Serial.println(F("Semikon")); break;
+        case 8:  Serial.println(F("IC")); break;
+        case 9:  Serial.println(F("Driver")); break;
+        case 10: Serial.println(F("Power")); break;
+        case 11: Serial.println(F("AlatUkur")); break;
+        case 12: Serial.println(F("Instrumen")); break;
+        case 13: Serial.println(F("Alat")); break;
+        case 14: Serial.println(F("Media")); break;
+        case 15: Serial.println(F("Connector")); break;
+        default: Serial.println(F("Unknown")); break;
+    }
+    
     Serial.print(F("Lokasi      : ")); Serial.println(lokasi);
     Serial.print(F("Tersedia    : ")); Serial.println(tersedia);
     Serial.print(F("Dipinjam    : ")); Serial.println(dipinjam);
