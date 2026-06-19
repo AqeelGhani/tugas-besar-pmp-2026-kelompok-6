@@ -36,10 +36,11 @@ void showRingkasan(CatalogItem catalog[], unsigned short arraySize) {
 
     // STATUS MEMORI (EEPROM)
     Serial.println(F("     -----  STATUS KAPASITAS DATABASE   -----  "));
-    sprintf(buffer, "- Slot Terpakai   : %d / %d\n", totalSlotTerpakai, arraySize);
+    
+    sprintf(buffer, "- Slot Terpakai   : %d / %d\r\n", totalSlotTerpakai, arraySize);
     Serial.print(buffer);
     
-    sprintf(buffer, "- Slot Tersisa    : %d\n", sisaSlot);
+    sprintf(buffer, "- Slot Tersisa    : %d\r\n", sisaSlot);
     Serial.print(buffer);
 
     // Notify capacity memori hampir abis
@@ -50,18 +51,21 @@ void showRingkasan(CatalogItem catalog[], unsigned short arraySize) {
 
     // STATUS BARANG
     Serial.println(F("       ------ STATUS KONDISI BARANG LAB ------   "));
-    
-    sprintf(buffer, "- Siap Digunakan  : %d unit\n", totalBarangTersedia);
+  
+    sprintf(buffer, "- Siap Digunakan  : %d unit\r\n", totalBarangTersedia);
     Serial.print(buffer);
     
-    sprintf(buffer, "- Sedang Dipinjam : %d unit\n", totalBarangDipinjam);
+    sprintf(buffer, "- Sedang Dipinjam : %d unit\r\n", totalBarangDipinjam);
     Serial.print(buffer);
     
-    sprintf(buffer, "- Kondisi Rusak   : %d unit\n", totalBarangRusak);
+    sprintf(buffer, "- Kondisi Rusak   : %d unit\r\n", totalBarangRusak);
     Serial.print(buffer);
     
     Serial.println(F("--------------------------------------------------"));
-    sprintf(buffer, "GRAND TOTAL : %d unit\n", grandTotal);
+    
+    sprintf(buffer, "GRAND TOTAL : %d unit\r\n", grandTotal);
     Serial.print(buffer);
-    Serial.println(F("==================================================\n"));
+    
+    Serial.println(F("=================================================="));
+    Serial.println(); // Tambahan baris kosong agar jarak ke menu selanjutnya rapi
 }
