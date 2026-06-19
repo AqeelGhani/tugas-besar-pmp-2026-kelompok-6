@@ -10,6 +10,7 @@
 #include "updateStatus.h"
 #include "updateStock.h"
 #include "eepromControl.h"
+#include "deleteAll.h"
 
 // Fungsi untuk mencetak teks menu agar rapi
 void CetakTampilanMenu() {
@@ -24,6 +25,7 @@ void CetakTampilanMenu() {
     Serial.println(F("6. Tampilkan semua item    "));
     Serial.println(F("7. Ringkasan Inventaris    "));
     Serial.println(F("8. Save to EEPROM          "));
+    Serial.println(F("9. Hapus Seluruh Data (Reset)"));
     Serial.println(F("=================================================="));
     Serial.print(F("Masukkan pilihan Anda (1-7): "));
 }
@@ -66,12 +68,12 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
     // Switch case untuk semua menu
     switch (pilihanMenu) {
         case '1':
-            Serial.println(F("\n[Menjalankan Menu 1: Tambah Data...]"));
+            Serial.println(F("\n[Tambah Data...]"));
             AddData(catalog, arraySize);
             break;
 
         case '2': {
-            Serial.println(F("\n[Menjalankan Menu 2: Hapus Data...]"));
+            Serial.println(F("\n[Hapus Data...]"));
             Serial.print(F("\nMasukkan ID Barang yang ingin dihapus: "));
             unsigned short idHapus = BacaInputAngka();
             Serial.println(idHapus);
@@ -79,7 +81,7 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
             break;
         }
         case '3': {
-            Serial.println(F("\n[Menjalankan Menu 3: Cari ID...]"));
+            Serial.println(F("\n[Cari ID...]"));
             Serial.print(F("\nMasukkan ID Barang yang dicari: "));
             unsigned short idCari = BacaInputAngka();
             Serial.println(idCari);
@@ -87,7 +89,7 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
             break;
         }
         case '4': {
-            Serial.println(F("\n[Menjalankan Menu 4: Perbarui Stok...]"));
+            Serial.println(F("\n[Perbarui Stok...]"));
             Serial.print(F("\nMasukkan ID Barang yang ingin diupdate: "));
             unsigned short idUpdateStock = BacaInputAngka();
             Serial.println(idUpdateStock);
@@ -95,7 +97,7 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
             break;
         }
         case '5': {            
-            Serial.println(F("\n[Menjalankan Menu 5: Perbarui Status...]"));
+            Serial.println(F("\n[Perbarui Status...]"));
             Serial.print(F("\nMasukkan ID Barang yang ingin diupdate: "));
             unsigned short idUpdateStatus = BacaInputAngka();
             Serial.println(idUpdateStatus);
@@ -103,12 +105,12 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
             break;
         }
         case '6':
-            Serial.println(F("\n[Menjalankan Menu 6: Menampilkan semua barang...]"));
+            Serial.println(F("\n[Menampilkan semua barang...]"));
             ShowAllItems(catalog, arraySize);
             break;
 
         case '7':
-            Serial.println(F("\n[Menjalankan Menu 7: Menampilkan ringkasan inventory...]"));
+            Serial.println(F("\n[Menampilkan ringkasan inventory...]"));
             showRingkasan(catalog, arraySize);
             break;
 
@@ -117,6 +119,11 @@ void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
             SaveEEPROM(catalog, arraySize);
             break;
 
+        case '9': 
+            Serial.println(F("\n[Reset Keseluruhan Data...]"));
+            deleteAll(catalog, arraySize);
+            break;
+          
         default:
             Serial.println(F("\n[ERROR] Pilihan tidak valid! Masukkan angka 1 hingga 7."));
             break;
