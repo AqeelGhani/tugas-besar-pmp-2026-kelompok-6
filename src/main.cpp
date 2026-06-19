@@ -8,8 +8,7 @@ CatalogItem catalog[MAX_ITEMS];
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("Start");
-  
+
   InitializeCatalog(catalog, MAX_ITEMS);
 
   ReadEEPROM(catalog, MAX_ITEMS);
