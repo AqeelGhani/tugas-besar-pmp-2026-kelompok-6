@@ -14,7 +14,7 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     Serial.println(F("\n=== TAMBAH DATA INVENTARIS ==="));
     unsigned short id = GetEmptyId(catalog, arraySize);
     
-    Serial.print(F("ID yang tersedia: "));
+    Serial.print(F("ID barang: "));
     Serial.println(id);
 
     char nama[9]={'\0','\0','\0','\0','\0','\0','\0','\0','\0'};
@@ -41,11 +41,26 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     Serial.println(F("| 7  | Semikon   | 15 | Connector |"));
     Serial.println(F("-----------------------------------"));
 
-    Serial.println(F("\nMasukkan Kategori (0-15):"));
-    while(!Serial.available()){}
-    kategori = Serial.parseInt();
+    // Variabel temporary untuk menampung inputan angka dan mengecek nilai negatif/overflow
+    int tempInput; 
+
+    // ==========================================
+    // LOOP VALIDASI KATEGORI (0 - 15)
+    // ==========================================
+    while (true) {
+        Serial.println(F("\nMasukkan Kategori (0-15):"));
+        while(!Serial.available()){}
+        tempInput = Serial.parseInt();
+        
+        if (tempInput >= 0 && tempInput <= 15) {
+            kategori = tempInput;
+            break; 
+        } else {
+            Serial.println(F("ERROR: ID Kategori tidak valid! Harap masukkan angka 0 - 15."));
+            while(Serial.available()) Serial.read(); 
+        }
+    }
     
-    // Echo inputan kategori beserta namanya secara manual
     Serial.print(F(">> ")); 
     Serial.print(kategori);
     Serial.print(F(" (")); 
@@ -70,47 +85,76 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     }
     Serial.println(F(")"));
 
-    if (kategori > 15) {
-        Serial.println(F("WARNING: Indeks kategori di luar jangkauan (0-15)!"));
+    // ==========================================
+    // LOOP VALIDASI LOKASI (0 - 63)
+    // ==========================================
+    while (true) {
+        Serial.println(F("\nMasukkan Lokasi (0-63):"));
+        while(!Serial.available()){}
+        tempInput = Serial.parseInt();
+        
+        if (tempInput >= 0 && tempInput <= 63) {
+            lokasi = tempInput;
+            Serial.print(F(">> ")); Serial.println(lokasi);
+            break;
+        } else {
+            Serial.println(F("ERROR: Lokasi tidak valid! Harap masukkan angka 0 - 63."));
+            while(Serial.available()) Serial.read();
+        }
     }
 
-    Serial.println(F("\nMasukkan Lokasi (0-63):"));
-    while(!Serial.available()){}
-    lokasi = Serial.parseInt();
-    if (lokasi <64 && lokasi >=0){
-        Serial.print(F(">> ")); Serial.println(lokasi);
-    }else{
-        Serial.println(F("ERROR: Lokasi tidak ditemukan!"));
+    // ==========================================
+    // LOOP VALIDASI STOK TERSEDIA (0 - 63)
+    // ==========================================
+    while (true) {
+        Serial.println(F("\nMasukkan Jumlah Stok Tersedia (0-63):"));
+        while(!Serial.available()){}
+        tempInput = Serial.parseInt();
+        
+        if (tempInput >= 0 && tempInput <= 63) {
+            tersedia = tempInput;
+            Serial.print(F(">> ")); Serial.println(tersedia);
+            break;
+        } else {
+            Serial.println(F("ERROR: Stock overflow/tidak valid! Harap masukkan angka 0 - 63."));
+            while(Serial.available()) Serial.read();
+        }
     }
-    
 
-    Serial.println(F("\nMasukkan Jumlah Stok Tersedia:"));
-    while(!Serial.available()){}
-    tersedia = Serial.parseInt();
-    if (tersedia < 64 && tersedia >= 0){
-        Serial.print(F(">> ")); Serial.println(tersedia);
-    }else{
-        Serial.println(F("ERROR: stock overflow!"));
+    // ==========================================
+    // LOOP VALIDASI STOK DIPINJAM (0 - 63)
+    // ==========================================
+    while (true) {
+        Serial.println(F("\nMasukkan Jumlah Stok Dipinjam (0-63):"));
+        while(!Serial.available()){}
+        tempInput = Serial.parseInt();
+        
+        if (tempInput >= 0 && tempInput <= 63) {
+            dipinjam = tempInput;
+            Serial.print(F(">> ")); Serial.println(dipinjam);
+            break;
+        } else {
+            Serial.println(F("ERROR: Stock overflow/tidak valid! Harap masukkan angka 0 - 63."));
+            while(Serial.available()) Serial.read();
+        }
     }
- 
 
-    Serial.println(F("\nMasukkan Jumlah Stok Dipinjam:"));
-    while(!Serial.available()){}
-    dipinjam = Serial.parseInt();
-    if (dipinjam < 64 && dipinjam >= 0){
-        Serial.print(F(">> ")); Serial.println(dipinjam);
-    }else{
-        Serial.println(F("ERROR: stock overflow!"));
-    }
- 
-
-    Serial.println(F("\nMasukkan Jumlah Stok Rusak:"));
-    while(!Serial.available()){}
-    rusak = Serial.parseInt();
-    if (rusak < 64 && rusak >= 0){
-        Serial.print(F(">> ")); Serial.println(rusak);
-    }else{
-        Serial.println(F("ERROR: stock overflow!"));
+    // ==========================================
+    // LOOP VALIDASI STOK RUSAK (0 - 63)
+    // ==========================================
+    while (true) {
+        Serial.println(F("\nMasukkan Jumlah Stok Rusak (0-63):"));
+        while(!Serial.available()){}
+        tempInput = Serial.parseInt();
+        
+        if (tempInput >= 0 && tempInput <= 63) {
+            rusak = tempInput;
+            Serial.print(F(">> ")); Serial.println(rusak);
+            break;
+        } else {
+            Serial.println(F("ERROR: Stock overflow/tidak valid! Harap masukkan angka 0 - 63."));
+            while(Serial.available()) Serial.read();
+        }
     }
 
     while(Serial.available()) Serial.read(); 
@@ -137,7 +181,6 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     Serial.print(F("ID Barang   : ")); Serial.println(id);
     Serial.print(F("Nama Barang : ")); Serial.println(nama);
     
-    // Cetak kategori di ringkasan secara manual
     Serial.print(F("Kategori    : ")); 
     Serial.print(kategori);
     Serial.print(F(" - ")); 
@@ -167,5 +210,4 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     Serial.print(F("Rusak       : ")); Serial.println(rusak);
     Serial.print(F("Nama PIC    : ")); Serial.println(pic);
     Serial.println(F("======================================="));
-
 }
