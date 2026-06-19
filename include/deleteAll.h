@@ -1,5 +1,5 @@
-#ifndef ADD_DATA_H
-#define ADD_DATA_H
+#ifndef DELETEALL_H
+#define DELETEALL_H
 
 #include <Arduino.h>
 #include "catalog.h"
