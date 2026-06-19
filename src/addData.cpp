@@ -12,22 +12,10 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     }
 
     Serial.println(F("\n=== TAMBAH DATA INVENTARIS ==="));
-    Serial.println(F("Masukkan ID Barang (0 - 84):"));
-    while(!Serial.available()){}
-    unsigned short id = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(id);
+    unsigned short id = GetEmptyId(catalog, arraySize);
     
-    while(Serial.available()) Serial.read();
-
-    if (id >= arraySize) {
-        Serial.println(F("ERROR: ID di luar rentang array!"));
-        return;
-    }
-
-    if (!IsSlotEmpty(&catalog[id])) {
-        Serial.println(F("ERROR: ID Duplikat! ID tersebut sudah terpakai."));
-        return;
-    }
+    Serial.print(F("ID yang tersedia: "));
+    Serial.println(id);
 
     char nama[9];
     char pic[5];
@@ -38,6 +26,20 @@ void AddData(CatalogItem catalog[], unsigned short arraySize) {
     Serial.readBytesUntil('\n', nama, 8);
     nama[8] = '\0'; 
     Serial.print(F(">> ")); Serial.println(nama);
+    
+    Serial.println(F("\n=== DAFTAR KATEGORI ==="));
+    Serial.println(F("-----------------------------------"));
+    Serial.println(F("| ID | Kategori  | ID | Kategori  |"));
+    Serial.println(F("-----------------------------------"));
+    Serial.println(F("| 0  | Mikon     |  8 | IC        |"));
+    Serial.println(F("| 1  | SBC       |  9 | Driver    |"));
+    Serial.println(F("| 2  | Sensor    | 10 | Power     |"));
+    Serial.println(F("| 3  | Aktuator  | 11 | AlatUkur  |"));
+    Serial.println(F("| 4  | Comm      | 12 | Instrumen |"));
+    Serial.println(F("| 5  | Display   | 13 | Alat      |"));
+    Serial.println(F("| 6  | Pasif     | 14 | Media     |"));
+    Serial.println(F("| 7  | Semikon   | 15 | Connector |"));
+    Serial.println(F("-----------------------------------"));
 
     Serial.println(F("\nMasukkan Kategori (0-15):"));
     while(!Serial.available()){}
