@@ -13,12 +13,12 @@ void setup() {
     // BUAT DATA CONTOH
     UpdateNamaKomponen(&catalog[10], (char*)"TESTDATA");
 
-    Serial.println("=== SEBELUM DELETE ===");
+    Serial.println(F("=== SEBELUM DELETE ==="));
 
     char nama[9];
     GetNamaKomponen(&catalog[10], nama);
 
-    Serial.print("Nama: ");
+    Serial.print(F("Nama: "));
     Serial.println(nama);
 
     // TEST DELETE + KONFIRMASI

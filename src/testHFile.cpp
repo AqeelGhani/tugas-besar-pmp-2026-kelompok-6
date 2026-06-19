@@ -1,5 +1,5 @@
 #include "testHFile.h"
 
 void SayHello() {
-    Serial.println("Hello my little worker!! ;)");
+    Serial.println(F("Hello my little worker!! ;)"));
 }

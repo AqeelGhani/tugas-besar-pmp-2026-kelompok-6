@@ -4,12 +4,12 @@
 void UpdateStatus(CatalogItem catalog[], unsigned short arraySize, unsigned short id)
 {
     if (id >= arraySize) {
-        Serial.println("ERROR: ID di luar batas");
+        Serial.println(F("ERROR: ID di luar batas"));
         return;
     }
 
     if (IsSlotEmpty(&catalog[id])) {
-        Serial.println("ERROR: Data kosong");
+        Serial.println(F("ERROR: Data kosong"));
         return;
     }
 
@@ -21,39 +21,39 @@ void UpdateStatus(CatalogItem catalog[], unsigned short arraySize, unsigned shor
 
     GetNamaKomponen(&catalog[id], nama);
 
-    Serial.println("DATA LAMA");
-    Serial.print("Nama: ");
+    Serial.println(F("DATA LAMA"));
+    Serial.print(F("Nama: "));
     Serial.println(nama);
-    Serial.print("Tersedia: ");
+    Serial.print(F("Tersedia: "));
     Serial.println(tersedia);
-    Serial.print("Dipinjam: ");
+    Serial.print(F("Dipinjam: "));
     Serial.println(dipinjam);
-    Serial.print("Rusak: ");
+    Serial.print(F("Rusak: "));
     Serial.println(rusak);
 
-    Serial.println("\nYakin ingin update status? (Y/N)");
+    Serial.println(F("\nYakin ingin update status? (Y/N)"));
 
     while (!Serial.available()) {}
     char confirm = Serial.read();
 
     if (confirm != 'Y' && confirm != 'y') {
-        Serial.println("UPDATE DIBATALKAN");
+        Serial.println(F("UPDATE DIBATALKAN"));
         return;
     }
 
     unsigned short newTersedia, newDipinjam, newRusak;
 
-    Serial.println("Masukkan status baru:");
+    Serial.println(F("Masukkan status baru:"));
 
-    Serial.print("Tersedia: ");
+    Serial.print(F("Tersedia: "));
     while (!Serial.available()) {}
     newTersedia = Serial.parseInt();
 
-    Serial.print("\nDipinjam: ");
+    Serial.print(F("\nDipinjam: "));
     while (!Serial.available()) {}
     newDipinjam = Serial.parseInt();
 
-    Serial.print("\nRusak: ");
+    Serial.print(F("\nRusak: "));
     while (!Serial.available()) {}
     newRusak = Serial.parseInt();
 
@@ -61,16 +61,16 @@ void UpdateStatus(CatalogItem catalog[], unsigned short arraySize, unsigned shor
     UpdateStatusDipinjam(&catalog[id], newDipinjam);
     UpdateStatusRusak(&catalog[id], newRusak);
 
-    Serial.println("\nDATA BERHASIL DIUPDATE");
+    Serial.println(F("\nDATA BERHASIL DIUPDATE"));
 
     GetNamaKomponen(&catalog[id], nama);
 
-    Serial.print("Nama: ");
+    Serial.print(F("Nama: "));
     Serial.println(nama);
-    Serial.print("Tersedia: ");
+    Serial.print(F("Tersedia: "));
     Serial.println(GetStatusTersedia(&catalog[id]));
-    Serial.print("Dipinjam: ");
+    Serial.print(F("Dipinjam: "));
     Serial.println(GetStatusDipinjam(&catalog[id]));
-    Serial.print("Rusak: ");
+    Serial.print(F("Rusak: "));
     Serial.println(GetStatusRusak(&catalog[id]));
 }
