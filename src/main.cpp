@@ -2,17 +2,20 @@
 #include "catalog.h"
 #include "eepromControl.h"
 #include "constant.h"
+#include "serialUI.h"
 
-CatalogItem catalog[85];
+CatalogItem catalog[MAX_ITEMS];
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("Start");
   
-  InitializeCatalog(catalog, sizeof(catalog)/sizeof(catalog[0]));
+  InitializeCatalog(catalog, MAX_ITEMS);
 
-  ReadEEPROM(catalog, sizeof(catalog)/sizeof(catalog[0]));
+  ReadEEPROM(catalog, MAX_ITEMS);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  JalankanSistem(catalog, MAX_ITEMS);
 }

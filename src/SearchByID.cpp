@@ -5,7 +5,7 @@
 
 // Search By ID function implementation
 void SearchByID(CatalogItem catalog[], unsigned short arraySize, unsigned short searchID){
-    char buffer[150];
+    char buffer[50];
 
     // Validasi ID yang dicari ada di rentang index array
     if(searchID >= arraySize){

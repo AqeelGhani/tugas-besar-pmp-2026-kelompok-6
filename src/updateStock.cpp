@@ -23,19 +23,19 @@ void UpdateStock(CatalogItem catalog[], unsigned short arraySize, unsigned short
     Serial.println("(Gunakan tanda minus '-' untuk mengurangi stok, misal: -2)");
     
     while (!Serial.available()) {}
-    long stockChange = Serial.parseInt();
+    short stockChange = Serial.parseInt();
 
-    if (stockChange < 0 && (long)currentStock + stockChange < 0) {
+    if (stockChange < 0 && (short)currentStock + stockChange < 0) {
         Serial.println("ERROR: Stok tidak mencukupi untuk melakukan pengurangan tersebut!");
         return;
     }
     
-    if ((long)currentStock + stockChange > 63){
+    if ((short)currentStock + stockChange > 63){
         Serial.println("ERROR: Stock tidak dapat ditambahkan karena overflow!");
         return;
     }
 
-    unsigned short newStock = (unsigned short)((long)currentStock + stockChange);
+    unsigned short newStock = (unsigned short)((short)currentStock + stockChange);
     
     UpdateStatusTersedia(&catalog[id], newStock);
 
