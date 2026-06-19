@@ -28,21 +28,29 @@ void SearchByID(CatalogItem catalog[], unsigned short arraySize, unsigned short 
     // ambil nama komponen dan PIC dari fungsi basic low-level
     GetNamaKomponen(&catalog[searchID], namaKomponen);
     GetPIC(&catalog[searchID], namaPIC);
-    
+
     unsigned short kategori = GetKategori(&catalog[searchID]);
     unsigned short lokasi = GetLokasi(&catalog[searchID]);
     unsigned short statusTersedia = GetStatusTersedia(&catalog[searchID]);
+    unsigned short statusDipinjam = GetStatusDipinjam(&catalog[searchID]); // Data ini sudah ada
+    unsigned short statusRusak = GetStatusRusak(&catalog[searchID]);       // Data ini sudah ada
     unsigned short totalStok = GetJumlahStock(&catalog[searchID]);
 
     // Interface Output
     Serial.println(F("\n ================ DETAIL BARANG ================ "));
-    sprintf(buffer, "ID Barang : %d\nNama      : %s\nKategori  : %d\nLokasi    : %d\nPIC       : %s\n", 
+    
+    sprintf(buffer, "ID Barang : %d\r\nNama      : %s\r\nKategori  : %d\r\nLokasi    : %d\r\nPIC       : %s\r\n", 
             searchID, namaKomponen, kategori, lokasi, namaPIC);
     Serial.print(buffer);
     
     Serial.println(F("--- STATUS STOCK ---"));
-    sprintf(buffer, "Tersedia  : %d unit\nTotal Stok: %d unit\n=========================\n", 
-            statusTersedia, totalStok);
+    
+    sprintf(buffer, "Tersedia  : %d unit\r\nDipinjam  : %d unit\r\n", 
+            statusTersedia, statusDipinjam);
+    Serial.print(buffer);
+
+    sprintf(buffer, "Rusak     : %d unit\r\nTotal Stok: %d unit\r\n================================================\r\n", 
+            statusRusak, totalStok);
     Serial.print(buffer);
 
 }
