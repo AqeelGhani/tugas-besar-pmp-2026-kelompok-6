@@ -4,13 +4,13 @@
 void DeleteItem(CatalogItem catalog[], unsigned short arraySize, unsigned short id)
 {
     if (id >= arraySize) {
-        Serial.println("ERROR: ID di luar batas array");
+        Serial.println(F("ERROR: ID di luar batas array"));
         return;
     }
 
     // ini untuk cek slot kosong
     if (IsSlotEmpty(&catalog[id])) {
-        Serial.println("ERROR: Data kosong, tidak bisa dihapus!");
+        Serial.println(F("ERROR: Data kosong, tidak bisa dihapus!"));
         return;
     }
 
@@ -19,10 +19,10 @@ void DeleteItem(CatalogItem catalog[], unsigned short arraySize, unsigned short 
     // untuk verifikasi
     GetNamaKomponen(&catalog[id], nama);
 
-    Serial.println("KONFIRMASI DELETE");
-    Serial.print("ID: ");
+    Serial.println(F("KONFIRMASI DELETE"));
+    Serial.print(F("ID: "));
     Serial.println(id);
-    Serial.print("Nama Komponen: ");
+    Serial.print(F("Nama Komponen: "));
     Serial.println(nama);
 
     Serial.println("Yakin ingin menghapus? (Y/N)");
@@ -35,9 +35,9 @@ void DeleteItem(CatalogItem catalog[], unsigned short arraySize, unsigned short 
 
         catalog[id].nama_komponen[0] = 0;
 
-        Serial.println("DATA BERHASIL DIHAPUS (nama komponen direset)");
+        Serial.println(F("DATA BERHASIL DIHAPUS (nama komponen direset)"));
     }
     else {
-        Serial.println("DELETE DIBATALKAN");
+        Serial.println(F("DELETE DIBATALKAN"));
     }
 }

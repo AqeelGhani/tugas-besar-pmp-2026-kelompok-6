@@ -30,12 +30,12 @@ void showRingkasan(CatalogItem catalog[], unsigned short arraySize) {
     // Output dengan Buffer SRAM kecil (~50 byte)
     char buffer[50];
 
-    Serial.println("\n==================================================");
-    Serial.println("                  RINGKASAN INVENTARIS                ");
-    Serial.println("==================================================");
+    Serial.println(F("\n=================================================="));
+    Serial.println(F("                  RINGKASAN INVENTARIS                "));
+    Serial.println(F("=================================================="));
 
     // STATUS MEMORI (EEPROM)
-    Serial.println("     -----  STATUS KAPASITAS DATABASE   -----  ");
+    Serial.println(F("     -----  STATUS KAPASITAS DATABASE   -----  "));
     sprintf(buffer, "- Slot Terpakai   : %d / %d\n", totalSlotTerpakai, arraySize);
     Serial.print(buffer);
     
@@ -44,12 +44,12 @@ void showRingkasan(CatalogItem catalog[], unsigned short arraySize) {
 
     // Notify capacity memori hampir abis
     if (sisaSlot <= 5) {
-        Serial.println("  *** PERINGATAN: KAPASITAS MEMORI HAMPIR HABIS! ***");
+        Serial.println(F("  *** PERINGATAN: KAPASITAS MEMORI HAMPIR HABIS! ***"));
     }
-    Serial.println("==================================================");
+    Serial.println(F("=================================================="));
 
     // STATUS BARANG
-    Serial.println("       ------ STATUS KONDISI BARANG LAB ------   ");
+    Serial.println(F("       ------ STATUS KONDISI BARANG LAB ------   "));
     
     sprintf(buffer, "- Siap Digunakan  : %d unit\n", totalBarangTersedia);
     Serial.print(buffer);
@@ -60,8 +60,8 @@ void showRingkasan(CatalogItem catalog[], unsigned short arraySize) {
     sprintf(buffer, "- Kondisi Rusak   : %d unit\n", totalBarangRusak);
     Serial.print(buffer);
     
-    Serial.println("--------------------------------------------------");
+    Serial.println(F("--------------------------------------------------"));
     sprintf(buffer, "GRAND TOTAL : %d unit\n", grandTotal);
     Serial.print(buffer);
-    Serial.println("==================================================\n");
+    Serial.println(F("==================================================\n"));
 }

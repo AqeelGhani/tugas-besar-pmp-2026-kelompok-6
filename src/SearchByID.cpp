@@ -5,7 +5,7 @@
 
 // Search By ID function implementation
 void SearchByID(CatalogItem catalog[], unsigned short arraySize, unsigned short searchID){
-    char buffer[50];
+    char buffer[100];
 
     // Validasi ID yang dicari ada di rentang index array
     if(searchID >= arraySize){
@@ -35,12 +35,12 @@ void SearchByID(CatalogItem catalog[], unsigned short arraySize, unsigned short 
     unsigned short totalStok = GetJumlahStock(&catalog[searchID]);
 
     // Interface Output
-    Serial.println("\n ================ DETAIL BARANG ================ ");
+    Serial.println(F("\n ================ DETAIL BARANG ================ "));
     sprintf(buffer, "ID Barang : %d\nNama      : %s\nKategori  : %d\nLokasi    : %d\nPIC       : %s\n", 
             searchID, namaKomponen, kategori, lokasi, namaPIC);
     Serial.print(buffer);
     
-    Serial.println("--- STATUS STOCK ---");
+    Serial.println(F("--- STATUS STOCK ---"));
     sprintf(buffer, "Tersedia  : %d unit\nTotal Stok: %d unit\n=========================\n", 
             statusTersedia, totalStok);
     Serial.print(buffer);
