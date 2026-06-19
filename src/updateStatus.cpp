@@ -14,6 +14,7 @@ void UpdateStatus(CatalogItem catalog[], unsigned short arraySize, unsigned shor
     }
 
     char nama[9];
+    int temp;
 
     unsigned short tersedia = GetStatusTersedia(&catalog[id]);
     unsigned short dipinjam = GetStatusDipinjam(&catalog[id]);
@@ -48,21 +49,50 @@ void UpdateStatus(CatalogItem catalog[], unsigned short arraySize, unsigned shor
     unsigned short newTersedia, newDipinjam, newRusak;
 
     Serial.println(F("\nMasukkan status baru:"));
+    while (true){
+        Serial.println(F("Tersedia:"));
+        while (!Serial.available()) {}
+        temp = Serial.parseInt();
+        
+        if (temp >= 0 && temp <= 63){
+            newTersedia = temp;
+            Serial.print(F(">> ")); Serial.println(newTersedia);
+            break;
+        } else {
+            Serial.println(F("ERROR: Stock overflow/tidak valid! Harap masukkan angka 0 - 63."));
+            while(Serial.available()) Serial.read();
+        }
+    }
 
-    Serial.println(F("Tersedia:"));
-    while (!Serial.available()) {}
-    newTersedia = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(newTersedia); // Echo inputan Tersedia
+    while (true) {
+        Serial.println(F("\nDipinjam:"));
+        while (!Serial.available()) {}
+        temp = Serial.parseInt();
+        
+        if (temp >= 0 && temp <= 63) {
+            newDipinjam = temp;
+            Serial.print(F(">> ")); Serial.println(newDipinjam);
+            break;
+        } else {
+            Serial.println(F("ERROR: Stock overflow/tidak valid! Harap masukkan angka 0 - 63."));
+            while(Serial.available()) Serial.read();
+        }
+    }
 
-    Serial.println(F("\nDipinjam:"));
-    while (!Serial.available()) {}
-    newDipinjam = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(newDipinjam); // Echo inputan Dipinjam
-
-    Serial.println(F("\nRusak:"));
-    while (!Serial.available()) {}
-    newRusak = Serial.parseInt();
-    Serial.print(F(">> ")); Serial.println(newRusak); // Echo inputan Rusak
+    while (true) {
+        Serial.println(F("\nRusak:"));
+        while(!Serial.available()){}
+        temp = Serial.parseInt();
+        
+        if (temp >= 0 && temp <= 63) {
+            newRusak = temp;
+            Serial.print(F(">> ")); Serial.println(newRusak);
+            break;
+        } else {
+            Serial.println(F("ERROR: Stock overflow/tidak valid! Harap masukkan angka 0 - 63."));
+            while(Serial.available()) Serial.read();
+        }
+    }
 
     // Membersihkan sisa buffer setelah fungsi parseInt selesai digunakan
     while(Serial.available()) Serial.read();
