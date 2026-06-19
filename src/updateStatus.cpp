@@ -1,6 +1,7 @@
+// update status
 #include "updateStatus.h"
 
-void UpdateStatusWithConfirmation(CatalogItem catalog[], unsigned short arraySize, unsigned short id)
+void UpdateStatus(CatalogItem catalog[], unsigned short arraySize, unsigned short id)
 {
     if (id >= arraySize) {
         Serial.println("ERROR: ID di luar batas");
