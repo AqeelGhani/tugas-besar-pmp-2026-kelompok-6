@@ -19,25 +19,25 @@ void DeleteItem(CatalogItem catalog[], unsigned short arraySize, unsigned short 
     // untuk verifikasi
     GetNamaKomponen(&catalog[id], nama);
 
-    Serial.println(F("KONFIRMASI DELETE"));
-    Serial.print(F("ID: "));
+    Serial.println(F("\n=== KONFIRMASI DELETE ==="));
+    Serial.print(F("ID            : "));
     Serial.println(id);
-    Serial.print(F("Nama Komponen: "));
+    Serial.print(F("Nama Komponen : "));
     Serial.println(nama);
 
-    Serial.println("Yakin ingin menghapus? (Y/N)");
-
+    Serial.println(F("\nYakin ingin menghapus? (Y/N):"));
+    
     while (!Serial.available()) {}
-
+    
     char confirm = Serial.read();
+    Serial.print(F(">> ")); Serial.println(confirm); 
+    while(Serial.available()) Serial.read();
 
     if (confirm == 'Y' || confirm == 'y') {
-
-        catalog[id].nama_komponen[0] = 0;
-
-        Serial.println(F("DATA BERHASIL DIHAPUS (nama komponen direset)"));
+        catalog[id].nama_komponen[0] = 0; 
+        Serial.println(F("\nSUCCESS: DATA BERHASIL DIHAPUS (nama komponen direset)"));
     }
     else {
-        Serial.println(F("DELETE DIBATALKAN"));
+        Serial.println(F("\nINFO: DELETE DIBATALKAN"));
     }
 }
