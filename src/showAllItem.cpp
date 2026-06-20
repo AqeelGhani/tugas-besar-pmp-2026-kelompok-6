@@ -2,6 +2,11 @@
 
 void ShowAllItems(CatalogItem catalog[], unsigned short arraySize)
 {
+    if (GetEmptySlotCount(catalog, MAX_ITEMS) == MAX_ITEMS){
+        Serial.println(F("Daftar Inventaris Masih Kosong!!!"));
+        return;
+    }
+
     Serial.println(F("===== DAFTAR INVENTARIS ====="));
 
     for (unsigned short i = 0; i < arraySize && i <= 63; i++)
