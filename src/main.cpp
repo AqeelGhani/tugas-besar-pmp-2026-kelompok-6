@@ -17,5 +17,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  JalankanSistem(catalog, MAX_ITEMS);
+  runSystem(catalog, MAX_ITEMS);
 }

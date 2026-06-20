@@ -8,7 +8,7 @@
 // input: -
 // output: pilihan menu yang ada
 //
-void CetakTampilanMenu();
+void showMenu();
 
 // Fungsi mengambil/parsing input user, dengan menunggu input
 // input: input angka user
@@ -18,6 +18,6 @@ unsigned short BacaInputAngka();
 // Fungsi menjalankan sistem
 // input: mengambil input menu dari user (parsing)
 // output: menjalankan fungsi dari menu yang dipilih
-void JalankanSistem(CatalogItem catalog[], unsigned short arraySize);
+void runSystem(CatalogItem catalog[], unsigned short arraySize);
 
 #endif

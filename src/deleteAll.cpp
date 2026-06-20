@@ -12,8 +12,10 @@ void deleteAll(CatalogItem catalog[], unsigned short arraySize) {
     while (!Serial.available()) {}
     char confirmDelete = Serial.read();
 
-    while (Serial.available() > 0) Serial.read();
-
+    while (Serial.available() > 0) {
+        Serial.read();
+    }
+    
     // Jika input bukan Y atau y, batalkan
     if (confirmDelete != 'Y' && confirmDelete != 'y') {
         Serial.println(F("\nOperasi Hapus Semua DIBATALKAN."));
@@ -23,7 +25,7 @@ void deleteAll(CatalogItem catalog[], unsigned short arraySize) {
     InitializeCatalog(catalog, arraySize);
     Serial.println(F("\nSUCCESS: Seluruh data di memori sementara (SRAM) telah dikosongkan!"));
 
-    // Prompt untuk Save ke EEPROM
+    // Konfirmasi save ke EEPROM
     Serial.println(F("\nApakah Anda ingin menyimpan reset kosong secara PERMANEN ke EEPROM? (Y/N): "));
     
     // Tunggu input konfirmasi kedua
@@ -31,9 +33,11 @@ void deleteAll(CatalogItem catalog[], unsigned short arraySize) {
     char confirmSave = Serial.read();
 
     // Bersihkan sisa karakter di buffer
-    while (Serial.available() > 0) Serial.read();
+    while (Serial.available() > 0) {
+        Serial.read();
+    }
 
-    // Jika pengguna setuju menyimpan ke EEPROM
+    // Jika user setuju menyimpan ke EEPROM
     if (confirmSave == 'Y' || confirmSave == 'y') {
         Serial.println(F("\n[Saving to EEPROM...]"));
         SaveEEPROM(catalog, arraySize);
