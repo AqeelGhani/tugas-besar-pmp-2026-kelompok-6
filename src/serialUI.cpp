@@ -13,7 +13,7 @@
 #include "deleteAll.h"
 
 // Fungsi untuk mencetak teks menu agar rapi
-void CetakTampilanMenu() {
+void showMenu() {
     Serial.println(F("\n=================================================="));
     Serial.println(F("      SISTEM INVENTARIS LAB EMBEDDED SYSTEMS      "));
     Serial.println(F("=================================================="));
@@ -27,7 +27,7 @@ void CetakTampilanMenu() {
     Serial.println(F("8. Save to EEPROM          "));
     Serial.println(F("9. Hapus Seluruh Data (Reset)"));
     Serial.println(F("=================================================="));
-    Serial.print(F("Masukkan pilihan Anda (1-7): "));
+    Serial.print(F("Masukkan pilihan Anda (1-9): "));
 }
 
 // ===============================================================================================
@@ -45,8 +45,8 @@ unsigned short BacaInputAngka() {
  
 
 // Fungsi utama sistem
-void JalankanSistem(CatalogItem catalog[], unsigned short arraySize) {
-    CetakTampilanMenu();
+void runSystem(CatalogItem catalog[], unsigned short arraySize) {
+    showMenu();
 
     // Tunggu input pilihan menu dari pengguna
     while (Serial.available() == 0) {
